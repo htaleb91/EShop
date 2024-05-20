@@ -1,0 +1,84 @@
+﻿@using EShop.Areas.Admin.Models.UserModels
+
+@model UserModel;
+@{
+    ViewData["Title"] = "Create New User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    const string hideUserBlockAttributeName = "UserPage.HideUserBlock";
+    var hideUserBlock = false;
+
+}
+<form enctype="multipart/form-data" asp-controller="User" asp-action="Edit" method="post" id="user-form">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            Add New
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "User")'">
+                    Back to List
+                </a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success">
+                    <i class="fas fa-download"></i>
+                    Operations
+                </button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">&nbsp;</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-item">
+
+                        <button type="submit" name="save" class="btn btn-primary">
+                            <i class="far fa-save"></i>
+                            Save
+                        </button>
+                    </li>
+                    <li class="dropdown-divider"></li>
+
+                    <li class="dropdown-item">
+                        <button type="submit" name="save-continue" class="btn btn-primary">
+                            <i class="far fa-save"></i>
+                            Save and Continue
+                        </button>
+
+
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item">
+
+                        <a type="button" asp-area="admin" asp-controller="User" asp-action="Delete" asp-route-id="@Model.UserId" class="btn btn-danger">
+                            <i class="far fa-trash-alt"></i>
+                            Delete
+                        </a>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <section class="content pb-1">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <eshop-cards id="user-cards">
+                    <eshop-card asp-name="Users-info-card"
+                                asp-icon="fas fa-map"
+                                asp-title="Users"
+                                asp-hide-block-attribute-name="@hideUserBlockAttributeName"
+                                asp-hide="@hideUserBlock" asp-advanced="false">
+                        @await Html.PartialAsync("./CreateOrUpdate.cshtml", Model)
+                    </eshop-card>
+                </eshop-cards>
+            </div>
+        </div>
+    </section>
+
+</form>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<EShop.Entities.Domain.Book>
+
+@{
+     ViewData["Title"] = "Books";
+    Layout = "_LayoutNew";
+}
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <p>
+        <a href="/Book/Create" type="button" class="btn btn-primary">Create New Book</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.language)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Pages)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.NumOfCopies)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.AvailNumOfCopies)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.BarCode)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.imgPath)
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.language)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pages)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumOfCopies)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailNumOfCopies)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BarCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.imgPath)
+                </td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+

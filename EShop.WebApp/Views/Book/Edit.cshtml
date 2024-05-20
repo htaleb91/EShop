@@ -1,0 +1,125 @@
+﻿@model EShop.Models.BookModel
+
+
+@{
+	ViewData["Title"] = "Create New Book";
+    Layout = "_LayoutNew";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- jquery validation -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Book Form <small></small></h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <div asp-validation-summary="All" class="text-danger"></div>
+             <form asp-controller="Book" asp-action="SaveFile" enctype="multipart/form-data">
+                @if(Model.ImgPath != null)
+                {
+                    <div class="form-group">
+                        <img src="@Model.ImgPath" name="@Model.ImgName" />
+                    </div>
+                }
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input asp-for="file" type="file" class="custom-file-input" id="Imgfile">
+                        <label class="custom-file-label" asp-for="file">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text">Upload</button>
+                    </div>
+                </div>
+            </form>
+            <form asp-action="Edit" asp-id="quickForm" id="quickForm">
+                <input asp-for="Id" type="hidden" value="@Model.Id" class="form-control" />
+                <input asp-for="BookAuthor.Id" type="hidden" value="@Model.BookAuthor.Id" class="form-control" />
+                <input asp-for="BookCategory.Id" type="hidden" value="@Model.BookCategory.Id" class="form-control" />
+                <input asp-for="BookCategory.BookId" type="hidden" value="@Model.Id" class="form-control" />
+                <input asp-for="BookAuthor.BookId" type="hidden" value="@Model.Id" class="form-control" />
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Publisher" class="control-label"></label>
+                        <input asp-for="Publisher" class="form-control" />
+                        <span asp-validation-for="Publisher" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PublishDate" class="control-label"></label>
+                        <input asp-for="PublishDate" class="form-control" />
+                        <span asp-validation-for="PublishDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="language" class="control-label"></label>
+                        <input asp-for="language" class="form-control" />
+                        <span asp-validation-for="language" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Pages" class="control-label"></label>
+                        <input asp-for="Pages" class="form-control" />
+                        <span asp-validation-for="Pages" class="text-danger"></span>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="NumOfCopies" class="control-label"></label>
+                        <input asp-for="NumOfCopies" class="form-control" />
+                        <span asp-validation-for="NumOfCopies" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AvailNumOfCopies" class="control-label"></label>
+                        <input asp-for="AvailNumOfCopies" class="form-control" />
+                        <span asp-validation-for="AvailNumOfCopies" class="text-danger"></span>
+                    </div>
+                     <div class="form-group">
+                        <label asp-for="BarCode" class="control-label"></label>
+                        <input asp-for="BarCode" class="form-control" />
+                        <span asp-validation-for="BarCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="ImgPath" class="form-control" />
+                    </div>
+                   
+                    <div class="form-group">
+                        <label asp-for="BookAuthor.AuthorId" class="control-label"></label>
+                        <select asp-for="BookAuthor.AuthorId" class="form-control" asp-items="@Model.BookAuthor.ListOfAuthors"></select>
+                        <span asp-validation-for="BookAuthor.AuthorId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BookCategory.CategoryId" class="control-label"></label>
+                        <select asp-for="BookCategory.CategoryId" class="form-control" asp-items="@Model.BookCategory.ListOfCategories"></select>
+                        <span asp-validation-for="BookCategory.CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+
+           
+        </div>
+        <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+    <div class="col-md-6">
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+    <!--/.col (right) -->
+</div>
+
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

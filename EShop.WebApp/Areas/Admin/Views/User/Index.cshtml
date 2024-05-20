@@ -1,0 +1,261 @@
+﻿@using EShop.Areas.Admin.Models.UserModels
+@using EShop.Framework.Models.DataTables
+@model UserSearchModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        User List
+    </h1>
+    <div class="float-right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-success">
+                <i class="fas fa-download"></i>
+                Operations
+            </button>
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">&nbsp;</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-item">
+                    <a type="button" href="@Url.Content("~/Admin/User/Create")" class="btn btn-primary">
+                        @*  <a type="button" asp-area="admin" asp-controller="User" asp-action="Create" class="btn btn-primary"> *@
+
+                        <i class="fas fa-plus-square"></i>
+                        Add New User
+                    </a>
+                    
+                </li>
+                <li class="dropdown-divider"></li>
+
+                <li class="dropdown-item">
+
+                    <button type="button" id="delete-selected" class="btn btn-danger">
+                        <i class="far fa-trash-alt"></i>
+                        Delete Selected
+                    </button>
+                </li>
+               
+            </ul>
+       
+        </div>
+        @*<nop-action-confirmation asp-button-id="delete-selected" />*@
+
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default card-search">
+                    <div class="card-body">
+                        <div class="row search-row )">
+                            <div class="search-text">Search</div>
+                            <div class="icon-search"><i class="fas fa-search"></i></div>
+
+                        </div>
+
+                        <div class="search-body">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="label-wrapper  float-right">
+                                                <label class="col-form-label" for="Id">Id</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-control" for="Id" data-val-required="The Id field is required.">
+                                                <option value="0">ht</option>
+                                                <option value="1" >ht1</option>
+                                                <option value="2">ht2</option>
+                                                <option value="3">ht3</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="text-center col-3">
+                                    <button type="button" id="search-Order" class="btn btn-primary btn-search">
+                                        <i class="fas fa-search"></i>Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="users-area">
+                    <div class="card card-default">
+                        <div class="card-body">
+
+                            @await Html.PartialAsync("Table", new DataTablesModel
+                       {
+                           Name = "users-grid",
+                           //RowIdBasedOnField = nameof(UserModel.SystemName),
+                           UrlRead = new DataUrl("List", "User", null),
+                           //PrimaryKeyColumn = nameof(UserModel.Id),
+                           SearchButtonId = "search-Order",
+                           Length = Model.PageSize,
+                           LengthMenu = Model.AvailablePageSizes,
+                           Filters = new List<FilterParameter>
+                           {
+                               new FilterParameter(nameof(Model.Id)),
+
+
+                           },
+                           ColumnCollection = new List<ColumnProperty>
+                            {
+                            // new ColumnProperty(nameof(UserModel.Id))
+                            // {
+                            // Render = new RenderChildCaret(),
+                            // Width = "5",
+                            // Searchable = false,
+                            // ClassName =  ColumnClassDefaults.ChildControl
+                            // },
+
+                            new ColumnProperty("userId")
+                            {
+                            IsMasterCheckBox = true,
+                            Render = new RenderCheckBox("checkbox_Orders"),
+                            ClassName =  ColumnClassDefaults.CenterAll,
+                            Width = "50"
+                            },
+                            new ColumnProperty("firstName")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title = "First Name",
+                            ClassName = ColumnClassDefaults.CenterAll + " firstName"
+                            },
+
+                            new ColumnProperty("sureName")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title = "Last Name",
+                            ClassName = ColumnClassDefaults.CenterAll 
+                            },
+                            new ColumnProperty("idCardNo")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title = "Id Card No",
+                            ClassName = ColumnClassDefaults.CenterAll 
+                            },
+                            new ColumnProperty("telNo")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title = "Telfon No",
+                            Visible = true,
+                            ClassName = ColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty("userId")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title ="User Id",
+                            ClassName = ColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty("gender")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title = "Gender",
+                            ClassName = ColumnClassDefaults.CenterAll
+                            },
+                            new ColumnProperty("address")
+                            {
+                            //AutoWidth=true,
+                            Width = "100",
+                            Title = "Address",
+                            ClassName = ColumnClassDefaults.CenterAll
+                            },
+
+                            new ColumnProperty("userId")
+                            {
+                            Title = "Edit",
+                            //AutoWidth=true,
+                            Width = "100",
+                            ClassName =  ColumnClassDefaults.Button + ColumnClassDefaults.CenterAll ,
+                            //Render = new RenderButtonEdit(new DataUrl("Edit", "User", new RouteValueDictionary { [nameof(Model.Id)] = Model.Id }))
+                            Render =  new RenderCustom("editButtonRender")
+                            }
+                           
+                            }
+                       }
+                       )
+                           
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    function editButtonRender(data, type, row, meta) {
+                                   
+        @*return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/SupplierBank/Edit/")' + data + '?btnId=btnRefreshBank&formId=SupplierBank-form\', 800, 550, true); return false;\" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Edit </button>';*@
+        return '<a type="button" href= @Url.Content("~/Admin/User/Edit/")' + data + ' class="btn btn-default"><i class="fas fa-pencil-alt"></i> Edit </button>';
+    }
+</script>
+                           
+<script>
+    @*function renderColumnOrderStatus(data, type, row, meta) {
+        var color;
+        switch (row.OrderStatus) {
+        case 1:
+            color = 'yellow';
+            break;
+        case 2:
+            color = 'blue';
+            break;
+        case 3:
+            color = 'green';
+            break;
+        case 4:
+            color = 'red';
+            break;
+        }
+    return '<span class="grid-report-item ' + color + '">' + data + '</span >';
+    }*@
+ 
+    $(document).ready(function () {
+        $('#delete-selected-action-confirmation-submit-button').bind('click', function () {
+            var postData = {
+            selectedIds: selectedIds
+            };
+            addAntiForgeryToken(postData);
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("DeleteSelected", "User"))",
+                data: postData,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    showAlert('deleteSelectedFailed', errorThrown);
+                    },
+                complete: function (jqXHR, textStatus) {
+                    if (jqXHR.status === 204) {
+                    showAlert('nothingSelectedAlert', 'No Records selected !!!!');
+                    return;
+                    }
+                        updateTable('#users-grid');
+                }
+            });
+        $('#delete-selected-action-confirmation').modal('toggle');
+        return false;
+        });
+    });
+</script>

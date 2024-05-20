@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EShop.Entities.Domain.User>
+
+@{
+     ViewData["Title"] = "Users";
+    Layout = "_LayoutNew";
+}
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <p>
+        <a href="/User/Create" type="button" class="btn btn-primary">Create New User</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SureName)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.IdCardNo)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.TelNo)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+             
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SureName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCardNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TelNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+

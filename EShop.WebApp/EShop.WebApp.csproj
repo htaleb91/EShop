@@ -1,0 +1,273 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-EShop-b4315583-709e-4fd4-8cc1-efaaccf3993c</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <Configurations>Debug;Release;test</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Author\**" />
+    <Compile Remove="Views\Book\**" />
+    <Compile Remove="Views\Borrowe\**" />
+    <Compile Remove="Views\Category\**" />
+    <Compile Remove="Views\Return\**" />
+    <Compile Remove="Views\User\**" />
+    <Content Remove="Views\Author\**" />
+    <Content Remove="Views\Book\**" />
+    <Content Remove="Views\Borrowe\**" />
+    <Content Remove="Views\Category\**" />
+    <Content Remove="Views\Return\**" />
+    <Content Remove="Views\User\**" />
+    <EmbeddedResource Remove="Views\Author\**" />
+    <EmbeddedResource Remove="Views\Book\**" />
+    <EmbeddedResource Remove="Views\Borrowe\**" />
+    <EmbeddedResource Remove="Views\Category\**" />
+    <EmbeddedResource Remove="Views\Return\**" />
+    <EmbeddedResource Remove="Views\User\**" />
+    <None Remove="Views\Author\**" />
+    <None Remove="Views\Book\**" />
+    <None Remove="Views\Borrowe\**" />
+    <None Remove="Views\Category\**" />
+    <None Remove="Views\Return\**" />
+    <None Remove="Views\User\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApplicationDbContext.cs" />
+    <Compile Remove="Areas\Identity\Data\CukurovaLibraryContext.cs" />
+    <Compile Remove="Areas\Identity\Data\EShopContext.cs" />
+    <Compile Remove="Data\LocaleDBContext.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
+    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Entities\Builders\AuthorBuilder.cs" />
+    <Compile Remove="Entities\Builders\BookAuthorBuilder.cs" />
+    <Compile Remove="Entities\Builders\BookBuilder.cs" />
+    <Compile Remove="Entities\Builders\BookCategoryBuilder.cs" />
+    <Compile Remove="Entities\Builders\BorroweBuilder.cs" />
+    <Compile Remove="Entities\Builders\CategoryBuilder.cs" />
+    <Compile Remove="Entities\Builders\ReturnBuilder.cs" />
+    <Compile Remove="Entities\Builders\UserBuilder.cs" />
+    <Compile Remove="Models\AuthorModel.cs" />
+    <Compile Remove="Models\BookAuthorModel.cs" />
+    <Compile Remove="Models\BookCategoryModel.cs" />
+    <Compile Remove="Models\BookModel.cs" />
+    <Compile Remove="Models\BookSearchModel.cs" />
+    <Compile Remove="Models\BorroweModel.cs" />
+    <Compile Remove="Models\CategoryModel.cs" />
+    <Compile Remove="Models\ReturnModel.cs" />
+    <Compile Remove="Models\SeedData.cs" />
+    <Compile Remove="Models\UserLoginModel.cs" />
+    <Compile Remove="Models\UserModel.cs" />
+    <Compile Remove="Models\UserViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Admin\_ViewImports.cshtml" />
+    <Content Remove="Areas\Admin\_ViewStart.cshtml" />
+    <Content Remove="Views\Shared\_ShopLayout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Views\Account\AccessDenied.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\SignUp1.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Shared\_ShopLayout.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\E-shop\assets\img\about-hero.svg" />
+    <None Include="wwwroot\E-shop\assets\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\E-shop\assets\js\custom.js" />
+    <None Include="wwwroot\E-shop\assets\js\jquery-1.11.0.min.js" />
+    <None Include="wwwroot\E-shop\assets\js\jquery-migrate-1.2.1.min.js" />
+    <None Include="wwwroot\E-shop\assets\js\slick.min.js" />
+    <None Include="wwwroot\E-shop\assets\js\templatemo.js" />
+    <None Include="wwwroot\E-shop\assets\js\templatemo.min.js" />
+    <None Include="wwwroot\E-shop\assets\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\E-shop\assets\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\E-shop\assets\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\E-shop\assets\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\E-shop\assets\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\E-shop\assets\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\E-shop\assets\webfonts\slick.svg" />
+    <None Include="wwwroot\js\datatables.net-bs4\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons-bs4\js\buttons.bootstrap4.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons\js\buttons.colVis.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons\js\buttons.flash.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons\js\buttons.html5.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons\js\buttons.print.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons\js\dataTables.buttons.min.js" />
+    <None Include="wwwroot\js\datatables.net-buttons\swf\flashExport.swf" />
+    <None Include="wwwroot\js\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\js\moment\locale\af.js" />
+    <None Include="wwwroot\js\moment\locale\ar-dz.js" />
+    <None Include="wwwroot\js\moment\locale\ar-kw.js" />
+    <None Include="wwwroot\js\moment\locale\ar-ly.js" />
+    <None Include="wwwroot\js\moment\locale\ar-ma.js" />
+    <None Include="wwwroot\js\moment\locale\ar-sa.js" />
+    <None Include="wwwroot\js\moment\locale\ar-tn.js" />
+    <None Include="wwwroot\js\moment\locale\ar.js" />
+    <None Include="wwwroot\js\moment\locale\az.js" />
+    <None Include="wwwroot\js\moment\locale\be.js" />
+    <None Include="wwwroot\js\moment\locale\bg.js" />
+    <None Include="wwwroot\js\moment\locale\bm.js" />
+    <None Include="wwwroot\js\moment\locale\bn-bd.js" />
+    <None Include="wwwroot\js\moment\locale\bn.js" />
+    <None Include="wwwroot\js\moment\locale\bo.js" />
+    <None Include="wwwroot\js\moment\locale\br.js" />
+    <None Include="wwwroot\js\moment\locale\bs.js" />
+    <None Include="wwwroot\js\moment\locale\ca.js" />
+    <None Include="wwwroot\js\moment\locale\cs.js" />
+    <None Include="wwwroot\js\moment\locale\cv.js" />
+    <None Include="wwwroot\js\moment\locale\cy.js" />
+    <None Include="wwwroot\js\moment\locale\da.js" />
+    <None Include="wwwroot\js\moment\locale\de-at.js" />
+    <None Include="wwwroot\js\moment\locale\de-ch.js" />
+    <None Include="wwwroot\js\moment\locale\de.js" />
+    <None Include="wwwroot\js\moment\locale\dv.js" />
+    <None Include="wwwroot\js\moment\locale\el.js" />
+    <None Include="wwwroot\js\moment\locale\en-au.js" />
+    <None Include="wwwroot\js\moment\locale\en-ca.js" />
+    <None Include="wwwroot\js\moment\locale\en-gb.js" />
+    <None Include="wwwroot\js\moment\locale\en-ie.js" />
+    <None Include="wwwroot\js\moment\locale\en-il.js" />
+    <None Include="wwwroot\js\moment\locale\en-in.js" />
+    <None Include="wwwroot\js\moment\locale\en-nz.js" />
+    <None Include="wwwroot\js\moment\locale\en-sg.js" />
+    <None Include="wwwroot\js\moment\locale\eo.js" />
+    <None Include="wwwroot\js\moment\locale\es-do.js" />
+    <None Include="wwwroot\js\moment\locale\es-mx.js" />
+    <None Include="wwwroot\js\moment\locale\es-us.js" />
+    <None Include="wwwroot\js\moment\locale\es.js" />
+    <None Include="wwwroot\js\moment\locale\et.js" />
+    <None Include="wwwroot\js\moment\locale\eu.js" />
+    <None Include="wwwroot\js\moment\locale\fa.js" />
+    <None Include="wwwroot\js\moment\locale\fi.js" />
+    <None Include="wwwroot\js\moment\locale\fil.js" />
+    <None Include="wwwroot\js\moment\locale\fo.js" />
+    <None Include="wwwroot\js\moment\locale\fr-ca.js" />
+    <None Include="wwwroot\js\moment\locale\fr-ch.js" />
+    <None Include="wwwroot\js\moment\locale\fr.js" />
+    <None Include="wwwroot\js\moment\locale\fy.js" />
+    <None Include="wwwroot\js\moment\locale\ga.js" />
+    <None Include="wwwroot\js\moment\locale\gd.js" />
+    <None Include="wwwroot\js\moment\locale\gl.js" />
+    <None Include="wwwroot\js\moment\locale\gom-deva.js" />
+    <None Include="wwwroot\js\moment\locale\gom-latn.js" />
+    <None Include="wwwroot\js\moment\locale\gu.js" />
+    <None Include="wwwroot\js\moment\locale\he.js" />
+    <None Include="wwwroot\js\moment\locale\hi.js" />
+    <None Include="wwwroot\js\moment\locale\hr.js" />
+    <None Include="wwwroot\js\moment\locale\hu.js" />
+    <None Include="wwwroot\js\moment\locale\hy-am.js" />
+    <None Include="wwwroot\js\moment\locale\id.js" />
+    <None Include="wwwroot\js\moment\locale\is.js" />
+    <None Include="wwwroot\js\moment\locale\it-ch.js" />
+    <None Include="wwwroot\js\moment\locale\it.js" />
+    <None Include="wwwroot\js\moment\locale\ja.js" />
+    <None Include="wwwroot\js\moment\locale\jv.js" />
+    <None Include="wwwroot\js\moment\locale\ka.js" />
+    <None Include="wwwroot\js\moment\locale\kk.js" />
+    <None Include="wwwroot\js\moment\locale\km.js" />
+    <None Include="wwwroot\js\moment\locale\kn.js" />
+    <None Include="wwwroot\js\moment\locale\ko.js" />
+    <None Include="wwwroot\js\moment\locale\ku.js" />
+    <None Include="wwwroot\js\moment\locale\ky.js" />
+    <None Include="wwwroot\js\moment\locale\lb.js" />
+    <None Include="wwwroot\js\moment\locale\lo.js" />
+    <None Include="wwwroot\js\moment\locale\lt.js" />
+    <None Include="wwwroot\js\moment\locale\lv.js" />
+    <None Include="wwwroot\js\moment\locale\me.js" />
+    <None Include="wwwroot\js\moment\locale\mi.js" />
+    <None Include="wwwroot\js\moment\locale\mk.js" />
+    <None Include="wwwroot\js\moment\locale\ml.js" />
+    <None Include="wwwroot\js\moment\locale\mn.js" />
+    <None Include="wwwroot\js\moment\locale\mr.js" />
+    <None Include="wwwroot\js\moment\locale\ms-my.js" />
+    <None Include="wwwroot\js\moment\locale\ms.js" />
+    <None Include="wwwroot\js\moment\locale\mt.js" />
+    <None Include="wwwroot\js\moment\locale\my.js" />
+    <None Include="wwwroot\js\moment\locale\nb.js" />
+    <None Include="wwwroot\js\moment\locale\ne.js" />
+    <None Include="wwwroot\js\moment\locale\nl-be.js" />
+    <None Include="wwwroot\js\moment\locale\nl.js" />
+    <None Include="wwwroot\js\moment\locale\nn.js" />
+    <None Include="wwwroot\js\moment\locale\oc-lnc.js" />
+    <None Include="wwwroot\js\moment\locale\pa-in.js" />
+    <None Include="wwwroot\js\moment\locale\pl.js" />
+    <None Include="wwwroot\js\moment\locale\pt-br.js" />
+    <None Include="wwwroot\js\moment\locale\pt.js" />
+    <None Include="wwwroot\js\moment\locale\ro.js" />
+    <None Include="wwwroot\js\moment\locale\ru.js" />
+    <None Include="wwwroot\js\moment\locale\sd.js" />
+    <None Include="wwwroot\js\moment\locale\se.js" />
+    <None Include="wwwroot\js\moment\locale\si.js" />
+    <None Include="wwwroot\js\moment\locale\sk.js" />
+    <None Include="wwwroot\js\moment\locale\sl.js" />
+    <None Include="wwwroot\js\moment\locale\sq.js" />
+    <None Include="wwwroot\js\moment\locale\sr-cyrl.js" />
+    <None Include="wwwroot\js\moment\locale\sr.js" />
+    <None Include="wwwroot\js\moment\locale\ss.js" />
+    <None Include="wwwroot\js\moment\locale\sv.js" />
+    <None Include="wwwroot\js\moment\locale\sw.js" />
+    <None Include="wwwroot\js\moment\locale\ta.js" />
+    <None Include="wwwroot\js\moment\locale\te.js" />
+    <None Include="wwwroot\js\moment\locale\tet.js" />
+    <None Include="wwwroot\js\moment\locale\tg.js" />
+    <None Include="wwwroot\js\moment\locale\th.js" />
+    <None Include="wwwroot\js\moment\locale\tk.js" />
+    <None Include="wwwroot\js\moment\locale\tl-ph.js" />
+    <None Include="wwwroot\js\moment\locale\tlh.js" />
+    <None Include="wwwroot\js\moment\locale\tr.js" />
+    <None Include="wwwroot\js\moment\locale\tzl.js" />
+    <None Include="wwwroot\js\moment\locale\tzm-latn.js" />
+    <None Include="wwwroot\js\moment\locale\tzm.js" />
+    <None Include="wwwroot\js\moment\locale\ug-cn.js" />
+    <None Include="wwwroot\js\moment\locale\uk.js" />
+    <None Include="wwwroot\js\moment\locale\ur.js" />
+    <None Include="wwwroot\js\moment\locale\uz-latn.js" />
+    <None Include="wwwroot\js\moment\locale\uz.js" />
+    <None Include="wwwroot\js\moment\locale\vi.js" />
+    <None Include="wwwroot\js\moment\locale\x-pseudo.js" />
+    <None Include="wwwroot\js\moment\locale\yo.js" />
+    <None Include="wwwroot\js\moment\locale\zh-cn.js" />
+    <None Include="wwwroot\js\moment\locale\zh-hk.js" />
+    <None Include="wwwroot\js\moment\locale\zh-mo.js" />
+    <None Include="wwwroot\js\moment\locale\zh-tw.js" />
+    <None Include="wwwroot\js\moment\min\moment-with-locales.min.js" />
+    <None Include="wwwroot\js\moment\moment.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="Entities\Builders\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EShop.Framework\EShop.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

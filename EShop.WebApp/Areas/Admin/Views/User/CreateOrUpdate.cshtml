@@ -1,0 +1,238 @@
+﻿@using EShop.Areas.Admin.Models.UserModels
+@using EShop.Entities.Enums;
+@using EShop.Services;
+@model UserModel;
+
+
+@{
+}
+<div asp-validation-summary="ModelOnly"></div>
+<div class="card-body">
+
+    <input type="hidden" asp-for="Id" value="@Model.Id"/>
+    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="FirstName">First Name</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    @* <input class="form-control text-box single-line" data-val="true" data-val-length="'First Name' must be between 0 and 1000 characters." data-val-length-max="1000" data-val-length-min="0" id="FirstName" name="FirstName" type="text" value="@Model.FirstName">*@
+                     @* <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span> *@
+                    <input class="form-control text-box single-line" id="FirstName" name="FirstName" type="text" value="@Model.FirstName" />
+                    <span asp-validation-for="FirstName"></span>
+               </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="IdCardNo">Id Card No</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control text-box single-line" id="IdCardNo" name="IdCardNo" type="text" value="@Model.IdCardNo" />
+                    <span asp-validation-for="IdCardNo"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="TelNo">Telephon No</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control text-box single-line" id="TelNo" name="TelNo" type="text" value="@Model.TelNo" />
+                    <span asp-validation-for="TelNo"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="UserName">User Name</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control text-box single-line" id="UserName" name="UserName" type="text" value="@Model.UserName" />
+                    <span asp-validation-for="UserName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="Address">Address</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <eshop-textarea asp-for="Address"></eshop-textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="SureName">Last Name</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control text-box single-line" id="SureName" name="SureName" type="text" value="@Model.SureName" />
+                    <span asp-validation-for="SureName"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="GenderId">Gender</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <eshop-select asp-required="true" asp-for="GenderId" asp-items="@await(((Gender)Model.GenderId).ToSelectListAsync())" />
+                </div>
+            </div> 
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="Email">Email</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control text-box single-line" id="Email" name="Email" type="text" value="@Model.Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="Password">Password</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="input-group">
+                        <input class="form-control text-box single-line password" id="Password" name="Password" type="password" value="@Model.Password" />
+                        <div class="input-group-append">
+                            <button type="submit" id="changepasswordBtn" name="changepassword" class="btn btn-info">
+                                Change password
+                            </button>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                
+            </div>
+            @if (Model.UserId > 0)
+            {
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <div class="label-wrapper  float-right">
+                            <label class="col-form-label" for="PictureId">Picture</label>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <img src="@Model.PictureUrl" Height="60" Width="60" />
+                    </div>
+                </div>
+            }
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="PictureFile">Picture File</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <input class="form-control text-box single-line" id="PictureFile" name="PictureFile" type="file" value="@Model.PictureFile" />
+                    <span asp-validation-for="PictureFile"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="label-wrapper  float-right">
+                        <label class="col-form-label" for="RoleIds">User Roles</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    @* <input class="form-control text-box single-line" data-val="true" data-val-length="'First Name' must be between 0 and 1000 characters." data-val-length-max="1000" data-val-length-min="0" id="FirstName" name="FirstName" type="text" value="@Model.FirstName">*@
+                    @* <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span> *@
+                    <eshop-select  asp-for="RoleIds" asp-items="@Model.AvailableRoles"/>
+                    <span asp-validation-for="RoleIds"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#changepasswordBtn').click(function (){
+            var passString = $('#@Html.IdFor(a=>a.Password)').val();
+            var postData = {
+                userId: @Model.UserId,
+                password: passString
+            };
+
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("ChangePassword", "User"))",
+                data: postData,
+                success: function (data, textStatus, jqXHR) {
+                  alert("password changed successfully!...") 
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("password not changed, an error occured while attempting to change password!...")
+                }
+            });
+        });
+        
+</script>
+
+@*
+
+  <div class="col-md-9">
+                @await Html.PartialAsync("Table", new DataTablesModel
+                {
+                    Name = "externalauthrecords-grid",
+                    Paging = false,
+                    ServerSide = false,
+                    Length = Model.CustomerAssociatedExternalAuthRecordsSearchModel.PageSize,
+                    LengthMenu = Model.CustomerAssociatedExternalAuthRecordsSearchModel.AvailablePageSizes,
+                    ColumnCollection = new List<ColumnProperty>
+                    {
+                        new ColumnProperty(nameof(CustomerAssociatedExternalAuthModel.AuthMethodName))
+                        {
+                            Title = T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.AuthMethodName").Text,
+                            Width = "100"
+                        },
+                        new ColumnProperty(nameof(CustomerAssociatedExternalAuthModel.Email))
+                        {
+                            Title = T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.Email").Text,
+                            Width = "100"
+                        },
+                        new ColumnProperty(nameof(CustomerAssociatedExternalAuthModel.ExternalIdentifier))
+                        {
+                            Title = T("Admin.Customers.Customers.AssociatedExternalAuth.Fields.ExternalIdentifier").Text,
+                            Width = "300"
+                        }
+                    },
+                    Data = JsonConvert.SerializeObject(Model.CustomerAssociatedExternalAuthRecordsSearchModel.AssociatedExternalAuthRecords.Select(externalAuthRecord => new
+                    {
+                        //We must display this data encoded, since the data can contain Unicode characters or malicious exploits
+                        AuthMethodName = WebUtility.HtmlEncode(externalAuthRecord.AuthMethodName),
+                        Email = WebUtility.HtmlEncode(externalAuthRecord.Email),
+                        ExternalIdentifier = WebUtility.HtmlEncode(externalAuthRecord.ExternalIdentifier)
+                    }).ToList())
+                })
+            </div>
+*@

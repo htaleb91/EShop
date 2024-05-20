@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EShop.Entities.Domain.Author>
+
+@{
+     ViewData["Title"] = "Authors";
+    Layout = "_LayoutNew";
+}
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <p>
+        <a href="/Author/Create" type="button" class="btn btn-primary">Create New Author</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthday)
+                </td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+

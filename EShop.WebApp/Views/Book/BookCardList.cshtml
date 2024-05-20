@@ -1,0 +1,253 @@
+﻿@model BookSearchModel
+
+@{
+	var x = 0;
+	Layout = "_LayoutNew";
+}
+<style>
+				:root {
+	  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+	}
+
+	innerBody {
+	  background: #111 !important;
+	}
+
+	.mycard {
+	  background: #222;
+	  border: 1px solid #dd2476;
+	  color: rgba(250, 250, 250, 0.8);
+	  margin-bottom: 2rem;
+	}
+
+	.mybtn {
+	  border: 5px solid;
+	  border-image-slice: 1;
+	  background: var(--gradient) !important;
+	  -webkit-background-clip: text !important;
+	  -webkit-text-fill-color: transparent !important;
+	  border-image-source:  var(--gradient) !important;
+	  text-decoration: none;
+	  transition: all .4s ease;
+	}
+
+	.mybtn:hover, .mybtn:focus {
+		  background: var(--gradient) !important;
+	  -webkit-background-clip: none !important;
+	  -webkit-text-fill-color: #fff !important;
+	  border: 5px solid #fff !important;
+	  box-shadow: #222 1px 0 10px;
+	  text-decoration: underline;
+	}
+</style>
+
+<!--
+<!--IEnumerable<EShop.Entities.Domain.Book>-->
+<form asp-controller="Book" asp-action="BookCardList" method="post">
+	<div class="content-header clearfix">
+		<h1 class="float-left">
+			Book Cards
+		</h1>
+		<div class="float-right">
+			@*
+			onclick="javascript:OpenWindow('@(Url.Action("HREmployeeLeaveReasonCreate", "HREmployeeLeaveReason",
+			new { HRLeaveReasonId = Model.Id, btnId = "btnRefresh", formId = "HRLeave-form" }))', 800, 550, true);
+			return false;"*@
+			<a asp-action="Create" class="btn btn-primary">
+				<i class="fas fa-plus-square"></i>
+				ADD New
+			</a>
+		</div>
+	</div>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="form-horizontal">
+				<div class="cards-group">
+					<div class="card card-default card-search">
+						<div class="card-body">
+							<div class="row search-row ">
+								<div class="search-text">Search</div>
+								<div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
+								<div class="icon-collapse"><i class="far fa-angle-down"></i></div>
+							</div>
+
+
+							<div class="search-body">
+								<div class="row">
+									<div class="col-md-12">
+
+										<div class="form-group row">
+											<div class="col-md-4">
+												<label asp-for="Title" class="control-label"></label>
+											</div>
+											<div class="col-md-8">
+												<input asp-for="Title" class="form-control" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-4">
+												<label asp-for="Publisher" class="control-label"></label>
+											</div>
+											<div class="col-md-8">
+												<input asp-for="Publisher" class="form-control" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-4">
+												<label asp-for="BarCode" class="control-label"></label>
+											</div>
+											<div class="col-md-8">
+												<input asp-for="BarCode" class="form-control" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-4">
+												<label asp-for="AuthorId" class="control-label"></label>
+											</div>
+											<div class="col-md-8">
+												<input asp-for="AuthorId" class="form-control" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-4">
+												<label asp-for="BookId" class="control-label"></label>
+											</div>
+											<div class="col-md-8">
+												<input asp-for="BookId" class="form-control" />
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="text-center col-12">
+										<button type="submit" id="search-HR" class="btn btn-primary btn-search">
+											<i class="fas fa-search"></i>
+											Search
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>
+
+@if (Model.Books != null)
+{
+	<section class="wrapper">
+		<div class="container">
+			<div class="container mx-auto mt-4">
+				<div class="row">
+					@foreach (var item in Model.Books)
+					{
+						<div class="col-md-4" style="display:flex">
+							<div class="card" style="width: 18rem;">
+								<img src="@item.imgPath" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h3>@item.Title</h3>
+
+									<h6>@item.Publisher</h6>
+									<a href="#" class="mybtn mr-2"><i class="fas fa-link"></i> More about this book.</a>
+
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+		</div>
+	</section>
+}
+
+@*
+
+	<style>
+
+	body{
+		/* Created with https://www.css-gradient.com */
+		background: #23EC55;
+		background: -webkit-radial-gradient(top right, #23EC55, #2D51C1);
+		background: -moz-radial-gradient(top right, #23EC55, #2D51C1);
+		background: radial-gradient(to bottom left, #23EC55, #2D51C1);
+		}
+	.wrapper{margin:10vh}
+		<!--post card styles-->
+
+	.card{
+		  border: none;
+		  transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+		 overflow:hidden;
+		 border-radius:20px;
+		 min-height:450px;
+		   box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+
+
+
+		&.card-has-bg{
+		 transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+		  background-size:120%;
+		  background-repeat:no-repeat;
+		  background-position: center center;
+			 &:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background: inherit;
+				-webkit-filter: grayscale(1);
+				-moz-filter: grayscale(100%);
+				-ms-filter: grayscale(100%);
+				 -o-filter: grayscale(100%);
+				 filter: grayscale(100%);}
+
+				 &:hover {
+					transform: scale(0.98);
+					 box-shadow: 0 0 5px -2px rgba(0,0,0,0.3);
+					background-size:130%;
+					 transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+					.card-img-overlay {
+					  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+					  background: rgb(35,79,109);
+					 background: linear-gradient(0deg, rgba(4,69,114,0.5) 0%, rgba(4,69,114,1) 100%);
+				 }
+			 }
+		}
+		 .card-footer{
+		  background: none;
+		   border-top: none;
+			.media{
+			 img{
+			   border:solid 3px rgba(255,255,255,0.3);
+			 }
+		   }
+		 }
+		 .card-meta{color:#26BD75}
+		 .card-body{
+		   transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+		}
+		 &:hover {
+		   .card-body{
+			 margin-top:30px;
+			 transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+		   }
+		 cursor: pointer;
+		 transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+		}
+		 .card-img-overlay {
+		  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+		 background: rgb(35,79,109);
+		background: linear-gradient(0deg, rgba(35,79,109,0.3785889355742297) 0%, rgba(69,95,113,1) 100%);
+		}
+	}
+
+</style>
+
+*@

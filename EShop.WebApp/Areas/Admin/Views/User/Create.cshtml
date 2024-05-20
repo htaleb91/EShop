@@ -1,0 +1,297 @@
+﻿@using EShop.Areas.Admin.Models.UserModels
+
+@model UserModel;
+@{
+    ViewData["Title"] = "Create New User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@{
+    const string hideUserBlockAttributeName = "UserPage.HideUserBlock";
+    var hideUserBlock = false;
+
+}
+<form enctype="multipart/form-data" asp-controller="User" asp-action="Create" method="post" id="user-form">
+    <div class="content-header clearfix">
+        <h1 class=" float-left">
+            Add New
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a style="cursor:pointer" onclick="location.href = '@Url.Action("Index", "User")'">
+                    Back to List
+                </a>
+            </small>
+        </h1>
+        <div class=" float-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-success">
+                    <i class="fas fa-download"></i>
+                    Operations
+                </button>
+                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">&nbsp;</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-item">
+                        <button type="submit" name="save" class="btn btn-primary">
+                            <i class="far fa-save"></i>
+                            Save
+                        </button>
+                    </li>
+                    <li class="dropdown-divider"></li>
+
+                    <li class="dropdown-item">
+
+                        <button type="submit" name="save-continue" class="btn btn-primary">
+                            <i class="far fa-save"></i>
+                            Save and Continue
+                        </button>
+                    </li>
+
+                </ul>
+
+            </div>
+           
+        </div>
+    </div>
+    <section class="content pb-1">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <eshop-cards id="user-cards">
+                    <eshop-card asp-name="Users-info-card"
+                              asp-icon="fas fa-map"
+                              asp-title="Users"
+                              asp-hide-block-attribute-name="@hideUserBlockAttributeName"
+                              asp-hide="@hideUserBlock" asp-advanced="false">
+                        @await Html.PartialAsync("./CreateOrUpdate.cshtml", Model)
+                    </eshop-card>
+                </eshop-cards>
+            </div>
+        </div>
+    </section>
+
+</form>
+@* 
+<div class="card card-secondary card-outline " id="customer-info">
+    <div class="card-header with-border clearfix">
+        <div class="card-title">
+            <i class="fas fa-info"></i>
+            Customer info
+        </div>
+        @* <div class="card-tools float-right">
+        <button class="btn btn-tool" type="button">
+        <i class="fa toggle-icon fa-plus"></i>
+        </button>
+        </div> 
+    </div>
+    <div class="card-body" style="display: none;">
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper">
+                    <label class="col-form-label" for="Email">Email</label>
+                    <div title="" class="ico-help" data-original-title="The customer's email.">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="'Email' must be between 0 and 1000 characters." data-val-length-max="1000" data-val-length-min="0" id="Email" name="Email" type="email" value="Admin10@gmail.com">
+                <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="Password">Password</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The customer's password."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input autocomplete="new-password" class="form-control text-box single-line password" id="Password" name="Password" type="password">
+                    <div class="input-group-append">
+                        <button type="submit" name="changepassword" class="btn btn-info">
+                            Change password
+                        </button>
+                    </div>
+                </div>
+                <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="FirstName">First name</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The customer's first name."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="'First Name' must be between 0 and 1000 characters." data-val-length-max="1000" data-val-length-min="0" id="FirstName" name="FirstName" type="text" value="John">
+                <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="LastName">Last name</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The customer's last name."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="'Last Name' must be between 0 and 1000 characters." data-val-length-max="1000" data-val-length-min="0" id="LastName" name="LastName" type="text" value="Martine">
+                <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="Gender">Gender</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The customer's gender."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="raw">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="Gender" id="Gender_Male" value="M" checked="">
+                        <label class="form-check-label" for="Gender_Male">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="Gender" id="Gender_Female" value="F">
+                        <label class="form-check-label" for="Gender_Female">
+                            Female
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="DateOfBirth">Date of birth</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The customer's date of birth."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <span class="k-widget k-datepicker" style=""><span class="k-picker-wrap k-state-default"><input id="DateOfBirth" name="DateOfBirth" value="3/17/2024" data-role="datepicker" type="text" class="k-input" role="combobox" aria-expanded="false" aria-owns="DateOfBirth_dateview" autocomplete="off" aria-disabled="false" style="width: 100%;"><span unselectable="on" class="k-select" aria-label="select" role="button" aria-controls="DateOfBirth_dateview"><span class="k-icon k-i-calendar"></span></span></span></span>
+                <span class="field-validation-valid" data-valmsg-for="DateOfBirth" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="Company">Company name</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The company name."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="'Company' must be between 0 and 1000 characters." data-val-length-max="1000" data-val-length-min="0" id="Company" name="Company" type="text" value="TCS">
+                <span class="field-validation-valid" data-valmsg-for="Company" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="IsTaxExempt">Is tax exempt</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Determines whether the customer is tax exempt."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <input checked="checked" class="check-box" data-val="true" data-val-required="The Is tax exempt field is required." id="IsTaxExempt" name="IsTaxExempt" type="checkbox" value="true">
+                <span class="field-validation-valid" data-valmsg-for="IsTaxExempt" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="SelectedNewsletterSubscriptionStoreIds" id="SelectedNewsletterSubscriptionStoreIds_label">Newsletter</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Choose stores to subscribe to newsletter."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="input-group-append">
+                    <div class="input-group">
+                        <div class="k-widget k-multiselect k-multiselect-clearable" unselectable="on" title="" style=""><div class="k-multiselect-wrap k-floatwrap" role="listbox" unselectable="on"><ul unselectable="on" class="k-reset" id="SelectedNewsletterSubscriptionStoreIds_taglist"></ul><input class="k-input k-readonly" style="width: 25px" accesskey="" autocomplete="off" role="listbox" title="" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" tabindex="0" aria-describedby="SelectedNewsletterSubscriptionStoreIds_taglist" aria-labelledby="SelectedNewsletterSubscriptionStoreIds_label" aria-disabled="false" aria-busy="false" aria-owns="SelectedNewsletterSubscriptionStoreIds_taglist SelectedNewsletterSubscriptionStoreIds_listbox"><span unselectable="on" class="k-icon k-clear-value k-i-close k-hidden" title="clear" role="button" tabindex="-1"></span><span class="k-icon k-i-loading k-hidden"></span></div><select id="SelectedNewsletterSubscriptionStoreIds" multiple="multiple" name="SelectedNewsletterSubscriptionStoreIds" data-role="multiselect" aria-disabled="false" style="display: none;"><option value="1">Your store name</option><option value="2">Test store 2</option></select><span style="font-family: &quot;source sans pro&quot;, -apple-system, BlinkMacSystemFont, &quot;segoe ui&quot;, Roboto, &quot;helvetica neue&quot;, Arial, sans-serif, &quot;apple color emoji&quot;, &quot;segoe ui emoji&quot;, &quot;segoe ui symbol&quot;; font-size: 16px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 26.4px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span></div>
+                    </div>
+                    <div class="input-group-btn"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="SelectedCustomerRoleIds" id="SelectedCustomerRoleIds_label">Customer roles</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Choose customer roles of this user."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="input-group-append input-group-required">
+                    <div class="input-group">
+                        <div class="k-widget k-multiselect k-multiselect-clearable" unselectable="on" title="" style=""><div class="k-multiselect-wrap k-floatwrap" role="listbox" unselectable="on"><ul unselectable="on" class="k-reset" id="SelectedCustomerRoleIds_taglist"><li role="option" aria-selected="true" class="k-button" unselectable="on" aria-setsize="1"><span unselectable="on">Registered</span><span aria-hidden="true" unselectable="on" aria-label="delete" title="delete" class="k-select"><span class="k-icon k-i-close"></span></span></li></ul><input class="k-input" style="width: 25px" accesskey="" autocomplete="off" role="listbox" title="" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" tabindex="0" aria-describedby="SelectedCustomerRoleIds_taglist" aria-labelledby="SelectedCustomerRoleIds_label" aria-disabled="false" aria-busy="false" aria-owns="SelectedCustomerRoleIds_taglist SelectedCustomerRoleIds_listbox"><span unselectable="on" class="k-icon k-clear-value k-i-close k-hidden" title="clear" role="button" tabindex="-1"></span><span class="k-icon k-i-loading k-hidden"></span></div><select id="SelectedCustomerRoleIds" multiple="multiple" name="SelectedCustomerRoleIds" data-role="multiselect" aria-disabled="false" style="display: none;"><option value="1">Administrators</option><option value="2">Forum Moderators</option><option value="4">Guests</option><option value="3" selected="">Registered</option><option value="5">Vendors</option></select><span style="font-family: &quot;source sans pro&quot;, -apple-system, BlinkMacSystemFont, &quot;segoe ui&quot;, Roboto, &quot;helvetica neue&quot;, Arial, sans-serif, &quot;apple color emoji&quot;, &quot;segoe ui emoji&quot;, &quot;segoe ui symbol&quot;; font-size: 16px; font-stretch: 100%; font-style: normal; font-weight: 400; letter-spacing: normal; text-transform: none; line-height: 26.4px; position: absolute; visibility: hidden; top: -3333px; left: -3333px;"></span></div>
+                    </div>
+                    <div class="input-group-btn">
+                        <span class="required">*</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="VendorId">Manager of vendor</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Choose a vendor associated to this customer account. When associated this customer will be able to login to the chosen vendor portal and manage his products and orders."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" data-val="true" data-val-required="The Manager of vendor field is required." id="VendorId" name="VendorId">
+                    <option value="0">Not a vendor</option>
+                    <option selected="selected" value="1">Vendor 1</option>
+                    <option value="2">Vendor 2</option>
+                </select>
+                <span class="field-validation-valid" data-valmsg-for="VendorId" data-valmsg-replace="true"></span>
+                <em>Note: if you have a vendor associated with this customer, then also ensure it is in "Vendors" customer role.</em>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="Active">Active</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Is this customer's account active. To disable/suspend a customer's account, uncheck this."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <input checked="checked" class="check-box" data-val="true" data-val-required="The Active field is required." id="Active" name="Active" type="checkbox" value="true">
+                <span class="field-validation-valid" data-valmsg-for="Active" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="AdminComment">Admin comment</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Admin comment. For internal use."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+<textarea class="form-control" rows="4" cols="20" data-val="true" data-val-length="'Admin Comment' must be between 0 and 2147483647 characters." data-val-length-max="2147483647" data-val-length-min="0" id="AdminComment" name="AdminComment">Good</textarea>
+                <span class="field-validation-valid" data-valmsg-for="AdminComment" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="RegisteredInStore">Registered in the store</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Indicating in which store the customer is registered"><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">Your store name</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="LastIpAddress">IP Address</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The last used IP address."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row"></div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="CreatedOn">Created on</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The date the customer record is created."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">3/17/2024 12:31:42 PM</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="label-wrapper"><label class="col-form-label" for="LastActivityDate">Last activity</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="The last activity date."><i class="fas fa-question-circle"></i></div></div>
+            </div>
+            <div class="col-md-9">
+                <div class="form-text-row">3/17/2024 12:31:42 PM</div>
+            </div>
+        </div>
+    </div>
+    <div id="statesAlert-action-alert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="statesAlert-action-alert-title">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="statesAlert-action-alert-title">Information</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="additional-text" id="statesAlert-info"></div>
+                    Failed to retrieve states.
+                </div>
+                <div class="modal-footer">
+                    <span class="btn btn-primary float-right" data-dismiss="modal">Ok</span>
+                </div>
+            </div>
+        </div>
+        <div class="btn btn-default" id="statesAlert" style="display:none" data-toggle="modal" data-target="#statesAlert-action-alert"></div><script type="text/javascript">$(document).ready(function () { $('#statesAlert').attr("data-toggle", "modal").attr("data-target", "#statesAlert-action-alert") });</script>
+    </div>
+</div> *@

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EShop.Entities.Domain.Borrowe>
+
+@{
+     ViewData["Title"] = "Borrowes";
+    Layout = "_LayoutNew";
+}
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <p>
+        <a href="/Borrowe/Create" type="button" class="btn btn-primary">Create New Borrowe</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.BorroweDate)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BorroweDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                
+                <td>
+                    <button asp-action="Edit" asp-route-id="@item.Id">Edit</button> 
+                </td>
+                <td>
+                    <button asp-action="Delete" asp-route-id="@item.Id">Delete</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>
+
+
